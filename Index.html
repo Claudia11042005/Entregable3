@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios de Cálculo</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax para renderizar fórmulas matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            padding-top: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 0;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .formula-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            background-color: white;
+            border: none;
+            height: 100%;
+        }
+        
+        .formula-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .formula-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .formula-content {
+            padding: 15px;
+            font-size: 1.1rem;
+            background-color: white;
+            height: calc(100% - 50px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .formula-number {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+        
+        .formula-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .formula-equation {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            font-family: "Cambria Math", "Times New Roman", serif;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .formula-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .example-section {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .section-title {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .formula-icon {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+        
+        .search-container {
+            margin-bottom: 20px;
+        }
+        
+        .formula-category {
+            background-color: var(--light-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .formula-equation {
+                font-size: 1rem;
+            }
+        }
+
+        .math-container {
+            text-align: center;
+            padding: 10px;
+        }
+
+         
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header text-center">
+            <h1><i class="fas fa-calculator me-2"></i>Formularios de Cálculo</h1>
+            <p class="lead">Recopilación completa de fórmulas esenciales para cálculo diferencial e integral</p>
+        </div>
+
+        <!-- Navigation -->
+        <ul class="nav nav-pills mb-4 justify-content-center" id="formularioTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="formulario1-tab" data-bs-toggle="pill" data-bs-target="#formulario1" type="button" role="tab">Formulario #1</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="formulario2-tab" data-bs-toggle="pill" data-bs-target="#formulario2" type="button" role="tab">Formulario de Cálculo</button>
+            </li>
+        </ul>
+
+    
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="formularioTabsContent">
+            <!-- Formulario 1 -->
+            <div class="tab-pane fade show active" id="formulario1" role="tabpanel">
+                <h2 class="section-title">Formulario #1-1</h2>
+                <div class="row" id="formulas1-container">
+                    <!-- Las fórmulas se cargarán aquí con JavaScript -->
+                </div>
+            </div>
+
+            <!-- Formulario 2 -->
+            <div class="tab-pane fade" id="formulario2" role="tabpanel">
+                <h2 class="section-title">Formulario de Cálculo</h2>
+                <div id="formulas2-container">
+                    <!-- Las fórmulas se cargarán aquí con JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer text-center">
+            <p>Formularios de Cálculo - Recopilación de fórmulas esenciales para estudiantes
+                <p> Hecho con mucho amor, desvelo y dedicación  </p>
+                <p>&#9829;</p>
+            </p>
+            <p class="mb-0">© 2025 - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <!-- Modal para mostrar ejemplos -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ejemplo de Fórmula</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- El contenido del ejemplo se cargará aquí con JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Nuestro JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
