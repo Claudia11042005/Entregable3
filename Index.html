@@ -11,6 +11,7 @@
     <!-- MathJax para renderizar fórmulas matemáticas -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
         :root {
             --primary-color: #3498db;
@@ -112,53 +113,7 @@
             color: #666;
             margin-top: 10px;
         }
-        
-        .modal-content {
-            border-radius: 10px;
-            border: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        
-        .modal-header {
-            background-color: var(--primary-color);
-            color: white;
-            border-bottom: none;
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .example-section {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        
-        .section-title {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .formula-icon {
-            color: var(--primary-color);
-            margin-right: 8px;
-        }
-        
-        .search-container {
-            margin-bottom: 20px;
-        }
-        
-        .formula-category {
-            background-color: var(--light-color);
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-        
+
         .footer {
             background-color: var(--secondary-color);
             color: white;
@@ -166,29 +121,24 @@
             margin-top: 40px;
             border-radius: 10px;
         }
-        
-        .nav-pills .nav-link.active {
-            background-color: var(--primary-color);
-        }
-        
-        .nav-pills .nav-link {
-            color: var(--secondary-color);
-        }
-        
-        @media (max-width: 768px) {
-            .formula-equation {
-                font-size: 1rem;
-            }
+
+       
+        #creditos {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
         }
 
-        .math-container {
-            text-align: center;
-            padding: 10px;
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-         
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -205,60 +155,91 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="formulario2-tab" data-bs-toggle="pill" data-bs-target="#formulario2" type="button" role="tab">Formulario de Cálculo</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="creditos-tab" data-bs-toggle="pill" data-bs-target="#creditos" type="button" role="tab">
+                    <i class="fas fa-users me-2"></i>Créditos
+                </button>
+            </li>
         </ul>
-
-    
 
         <!-- Tab Content -->
         <div class="tab-content" id="formularioTabsContent">
+
             <!-- Formulario 1 -->
             <div class="tab-pane fade show active" id="formulario1" role="tabpanel">
                 <h2 class="section-title">Formulario #1-1</h2>
-                <div class="row" id="formulas1-container">
-                    <!-- Las fórmulas se cargarán aquí con JavaScript -->
-                </div>
+                <div class="row" id="formulas1-container"></div>
             </div>
 
             <!-- Formulario 2 -->
             <div class="tab-pane fade" id="formulario2" role="tabpanel">
                 <h2 class="section-title">Formulario de Cálculo</h2>
-                <div id="formulas2-container">
-                    <!-- Las fórmulas se cargarán aquí con JavaScript -->
+                <div id="formulas2-container"></div>
+            </div>
+
+            <!-- Créditos -->
+            <div class="tab-pane fade" id="creditos" role="tabpanel">
+                <div class="credits-section">
+                    <h2 class="section-title text-center">Créditos del Proyecto</h2>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 mb-4">
+                            <div class="profile-card text-center">
+                                <div class="profile-img-container mb-3">
+                                    <img src="img/Clau.jpg" class="profile-img">
+                                </div>
+                                <h4>Claudia Yaneth Tax Lejá</h4>
+                                <p class="text-muted mb-2">Estudiante - Desarrollador</p>
+                                <p><strong>Carrera:</strong> Licenciatura en Tecnología de Sistemas Informáticos</p>
+                                <p><strong>Universidad:</strong> UVG Altiplano</p>
+                                <p><strong>Semestre:</strong> 6to Semestre</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 mb-4">
+                            <div class="profile-card text-center">
+                                <div class="profile-img-container mb-3">
+                                    <img src="img/ingeniero.jpg" class="profile-img">
+                                </div>
+                                <h4>Ing. Angel Alberto Racancoj Quijivix</h4>
+                                <p class="text-muted mb-2">Docente</p>
+                                <p><strong>Materia:</strong> Cálculo 2</p>
+                                <p><strong>Universidad:</strong> UVG Altiplano</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
 
-        <!-- Footer -->
-        <footer class="footer text-center">
-            <p>Formularios de Cálculo - Recopilación de fórmulas esenciales para estudiantes
-                <p> Hecho con mucho amor, desvelo y dedicación  </p>
-                <p>&#9829;</p>
-            </p>
-            <p class="mb-0">© 2025 - Todos los derechos reservados</p>
-        </footer>
+       
+
     </div>
 
-    <!-- Modal para mostrar ejemplos -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- Footer -->
+        <footer class="footer text-center">
+            <p>Formularios de Cálculo - Recopilación de fórmulas esenciales para estudiantes</p>
+            <p>Hecho con amor, desvelo y dedicación ♥</p>
+            <p class="mb-0">© 2025 - Todos los derechos reservados</p>
+        </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ejemplo de Fórmula</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Ejemplo de Fórmula</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body" id="modalBody">
-                    <!-- El contenido del ejemplo se cargará aquí con JavaScript -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+                <div class="modal-body" id="modalBody"></div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Nuestro JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
